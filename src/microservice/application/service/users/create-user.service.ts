@@ -10,7 +10,8 @@ import {
 } from '@devseeder/nestjs-microservices-schemas';
 import {
   GenericRepository,
-  GenericCreateUserService
+  GenericCreateUserService,
+  ErrorKeys
 } from '@devseeder/nestjs-microservices-commons';
 import { User } from 'src/microservice/domain/schemas/users.schema';
 import { UserBodyDto } from '@devseeder/nestjs-microservices-core/dist/dto/user.dto';
@@ -30,7 +31,7 @@ export class CreateUserService extends GenericCreateUserService<
     protected readonly errorService: ErrorService,
     @Inject(REQUEST) protected readonly request?: Request,
     @Inject(DIToken.SCOPE_KEY) protected readonly scopeKey?: string,
-    protected readonly clientAuthService?: ClientAuthService
+    protected readonly clientAuthService?: ClientAuthService //
   ) {
     super(
       repository,
@@ -43,5 +44,23 @@ export class CreateUserService extends GenericCreateUserService<
       clientAuthService,
       PROJECT_KEY
     );
+  }
+
+  async createUserAuth(user: UserBodyDto): Promise<string> {
+    let id;
+    try {
+      id = await super.createUserAuth(user);
+    } catch (err) {
+      if (err['errCode'] === 51) {
+        const userLabel = await this.translationService.getEntityTranslation(
+          this.entity
+        );
+        await this.errorService.throwError(ErrorKeys.ALREADY_EXISTS, {
+          key: userLabel.itemLabel,
+          value: user.username
+        });
+      }
+    }
+    return id;
   }
 }

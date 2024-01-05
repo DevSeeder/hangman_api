@@ -13,12 +13,20 @@ import {
   UserPontuation,
   UserPontuationSchema
 } from '../schemas/user-pontuation.schema';
+import { CreateUserService } from 'src/microservice/application/service/users/create-user.service';
+import { ClientAuthService } from '@devseeder/nestjs-microservices-core';
 
 export const EntitySetupConfig: ModelEntityTokens = {
   users: {
     modelName: User.name,
     schema: UsersSchema,
-    collection: DependencyEntityTokens.USER
+    collection: DependencyEntityTokens.USER,
+    customProvider: {
+      create: {
+        className: CreateUserService,
+        injectArgs: [ClientAuthService.name]
+      }
+    }
   },
   words: {
     modelName: Word.name,

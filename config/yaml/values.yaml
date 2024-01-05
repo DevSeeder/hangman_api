@@ -3,7 +3,7 @@ auth:
     expires: '90000s'
     secret: ${GLOBAL_API_JWT_SECRET}
   url: http://localhost:5000
-  clientToken: ${HANGMAN_API_AUTH_TOKEN}
+  clientToken: ${PETHELPER_API_AUTH_TOKEN}
   scopeKey: DEVSEEDER/HANGMAN/API
 database:
   mongodb:

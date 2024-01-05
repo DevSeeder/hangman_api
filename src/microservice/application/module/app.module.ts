@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { HttpModule } from '@nestjs/axios';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import configuration from '../../../config/configuration';
@@ -9,7 +10,10 @@ import {
   GeneratorModuleOptions,
   GenericModuleGenerator
 } from '@devseeder/nestjs-microservices-commons';
-import { MetaDataInterceptor } from '@devseeder/nestjs-microservices-core';
+import {
+  ClientAuthService,
+  MetaDataInterceptor
+} from '@devseeder/nestjs-microservices-core';
 
 const moduleOptions = {
   authGuard: CustomJwtAuthGuard,
@@ -33,13 +37,18 @@ const moduleOptions = {
     }),
     ...GenericModuleGenerator.generateModules(
       moduleOptions as GeneratorModuleOptions
-    )
+    ),
+    HttpModule
   ],
   controllers: [],
   providers: [
     {
       provide: APP_INTERCEPTOR,
       useClass: MetaDataInterceptor
+    },
+    {
+      provide: ClientAuthService.name,
+      useClass: ClientAuthService
     }
   ],
   exports: []
