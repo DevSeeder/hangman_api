@@ -20,9 +20,6 @@ export class UserPontuation extends AbstractSchema {
   @Prop({ required: true })
   userId: string;
 
-  @Prop({ required: true })
-  startDate: Date;
-
   @Prop({ required: false, default: 0 })
   rightWords: number;
 

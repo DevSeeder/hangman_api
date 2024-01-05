@@ -8,7 +8,7 @@ export type UserDocument = User & Document;
 
 @Schema({ timestamps: true, collection: DependencyEntityTokens.USER })
 export class User extends AbstractUser {
-  @Prop({ required: true })
+  @Prop({ required: false })
   image: string;
 
   @Prop({ required: true })

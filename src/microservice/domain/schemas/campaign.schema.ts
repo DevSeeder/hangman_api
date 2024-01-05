@@ -18,7 +18,7 @@ export class Campaign extends AbstractSchema {
   userId: string;
 
   @Prop({ required: true })
-  status: string;
+  idStatus: string;
 
   @Prop({ required: true })
   startDate: Date;

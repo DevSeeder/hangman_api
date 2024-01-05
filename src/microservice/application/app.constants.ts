@@ -3,7 +3,7 @@ export const PROJECT_KEY = 'HANGMAN';
 export enum DependencyEntityTokens {
   USER = 'users',
   WORD = 'words',
-  CAMPAIGN = 'campaign',
+  CAMPAIGN = 'campaigns',
   CAMPAIGN_STATUS = 'campaignStatus',
   ROUND_STATUS = 'roundStatus',
   ROUND = 'rounds',

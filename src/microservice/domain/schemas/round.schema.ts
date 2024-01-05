@@ -15,16 +15,16 @@ export class Round extends AbstractSchema {
   languageAnswer: string;
 
   @Prop({ required: true })
-  wordId: string;
+  idWord: string;
 
   @Prop({ required: true })
   userId: string;
 
   @Prop({ required: true })
-  campaignId: string;
+  idCampaign: string;
 
   @Prop({ required: true })
-  status: string;
+  idStatus: string;
 
   @Prop({ required: true })
   startDate: Date;
