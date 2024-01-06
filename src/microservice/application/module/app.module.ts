@@ -37,18 +37,13 @@ const moduleOptions = {
     }),
     ...GenericModuleGenerator.generateModules(
       moduleOptions as GeneratorModuleOptions
-    ),
-    HttpModule
+    )
   ],
   controllers: [],
   providers: [
     {
       provide: APP_INTERCEPTOR,
       useClass: MetaDataInterceptor
-    },
-    {
-      provide: ClientAuthService.name,
-      useClass: ClientAuthService
     }
   ],
   exports: []
