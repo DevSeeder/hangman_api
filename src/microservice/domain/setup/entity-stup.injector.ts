@@ -1,5 +1,8 @@
 import { DependencyEntityTokens } from 'src/microservice/application/app.constants';
-import { ModelEntityTokens } from '@devseeder/nestjs-microservices-commons';
+import {
+  AuthHttpModule,
+  ModelEntityTokens
+} from '@devseeder/nestjs-microservices-commons';
 import { User, UsersSchema } from '../schemas/users.schema';
 import { Word, WordsSchema } from '../schemas/words.schema';
 import { Campaign, CampaignsSchema } from '../schemas/campaign.schema';
@@ -26,7 +29,8 @@ export const EntitySetupConfig: ModelEntityTokens = {
       create: {
         className: CreateUserService,
         injectArgs: [ClientAuthService.name]
-      }
+      },
+      imports: [AuthHttpModule]
     }
   },
   words: {
