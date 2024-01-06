@@ -7,7 +7,8 @@ export enum DependencyEntityTokens {
   CAMPAIGN_STATUS = 'campaignStatus',
   ROUND_STATUS = 'roundStatus',
   ROUND = 'rounds',
-  USER_PONTUATION = 'userPontuation'
+  USER_PONTUATION = 'userPontuation',
+  TAGS = 'tags'
 }
 
 export enum DIToken {

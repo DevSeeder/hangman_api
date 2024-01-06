@@ -15,6 +15,7 @@ import {
 } from '../schemas/user-pontuation.schema';
 import { CreateUserService } from 'src/microservice/application/service/users/create-user.service';
 import { ClientAuthService } from '@devseeder/nestjs-microservices-core';
+import { Tag, TagsSchema } from '../schemas/tags.schema';
 
 export const EntitySetupConfig: ModelEntityTokens = {
   users: {
@@ -57,5 +58,10 @@ export const EntitySetupConfig: ModelEntityTokens = {
     modelName: UserPontuation.name,
     schema: UserPontuationSchema,
     collection: DependencyEntityTokens.USER_PONTUATION
+  },
+  tags: {
+    modelName: Tag.name,
+    schema: TagsSchema,
+    collection: DependencyEntityTokens.TAGS
   }
 };
