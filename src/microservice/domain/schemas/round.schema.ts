@@ -35,6 +35,9 @@ export class Round extends AbstractSchema {
   @Prop({ required: false })
   difficult: number;
 
+  @Prop({ required: true, default: 1 })
+  sequence: number;
+
   @Prop({ required: false, default: 0 })
   points: number;
 
@@ -49,4 +52,5 @@ export class Round extends AbstractSchema {
 }
 
 const schema = SchemaFactory.createForClass(Round);
+schema.index({ idCampaign: 1, sequence: 1 }, { unique: true });
 export const RoundsSchema = schema;

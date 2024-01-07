@@ -11,25 +11,24 @@ export class Word extends AbstractSchema {
   @Prop({ required: true })
   word: string;
 
-  @Prop({ required: true })
-  languageWord: string;
+  @Prop({ required: false })
+  languageRef: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   difficult: number;
 
   @Prop({ required: true })
-  answer: Answer[];
+  translations: TranslationAnswer[];
 
   @Prop({ required: false, default: [] })
   tags: string[] = [];
 }
 
-export interface Answer {
+export interface TranslationAnswer {
   locale: string;
   value: string;
 }
 
 const schema = SchemaFactory.createForClass(Word);
 schema.index({ word: 1, languageWord: 1 }, { unique: true });
-
 export const WordsSchema = schema;
